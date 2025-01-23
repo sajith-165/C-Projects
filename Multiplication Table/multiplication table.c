@@ -4,13 +4,16 @@ int get_data();
 char reply();
 void table(int, int, FILE *filePtr);
 void SaveTable (int, int, FILE *filePtr);
+void output(int, int, char, FILE *filePtr);
 
 int main() // main function
 {
     FILE *filePtr; // File pointer
-    filePtr = fopen("multiplication_table.txt", "w"); // Open file in write mode
+    // Open file in write mode
+    filePtr = fopen("multiplication_table.txt", "w");
 
-    if (filePtr == NULL) // Check if file opened successfully
+    // Check if file opened successfully
+    if (filePtr == NULL)
     {
         printf("Error: Could not open file.\n");
         return 1;
@@ -18,9 +21,11 @@ int main() // main function
 
     printf("(Columns should be less than 15 for a better display)\n\n");
 
+    // get number of columns
     printf("How far long columns need? ");
     int columns = get_data();
 
+    // get number of rows
     printf("\nHow far long row need? ");
     int row = get_data();
 
@@ -29,21 +34,12 @@ int main() // main function
 
     // ask to save multipilication table
     char option = reply();
-    if (option == 'y' || option == 'Y' )
-        {
-            SaveTable(columns, row, filePtr);
-            printf("\n Table saved to 'multiplication_table.txt'\n\n");
-            printf (" your table save successfully!\n");
-            printf ("\t thanks for using program..\n");
-        }
-    else
-        {
-            printf ("\n not save your table..\n");
-            printf ("\t thanks for using program..\n");
-        }
 
+    // final output
+    output(columns, row, option, filePtr);
 
-    fclose(filePtr); // Close the file
+    // Close the file
+    fclose(filePtr);
 
     return 0;
 }
@@ -84,8 +80,8 @@ void SaveTable (int columns, int row, FILE *filePtr)
         }
 }
 
-
-int get_data() // Get data function Definition
+// Get data function Definition
+int get_data()
 {
     int data;
     while (1)
@@ -101,7 +97,7 @@ int get_data() // Get data function Definition
     return data;
 }
 
-
+// ask to save table function
 char reply()
 {
     printf ("\n\n Are you like to save this table ( y / n ) : ");
@@ -120,4 +116,20 @@ char reply()
 
 }
 
+// final output
+void output(int columns, int row, char option, FILE *filePtr)
+{
+    if (option == 'y' || option == 'Y' )
+        {
+            SaveTable(columns, row, filePtr);
+            printf("\n Table saved to 'multiplication_table.txt'\n\n");
+            printf (" your table save successfully!\n");
+            printf ("\t thanks for using program..\n");
+        }
+    else
+        {
+            printf ("\n not save your table..\n");
+            printf ("\t thanks for using program..\n");
+        }
+}
 
