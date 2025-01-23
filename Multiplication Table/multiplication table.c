@@ -2,7 +2,7 @@
 
 int get_data();
 char reply();
-void table(int, int, FILE *filePtr);
+void table(int, int);
 void SaveTable (int, int, FILE *filePtr);
 void output(int, int, char, FILE *filePtr);
 
@@ -30,7 +30,7 @@ int main() // main function
     int row = get_data();
 
     // Generate table
-    table(columns, row, filePtr);
+    table(columns, row);
 
     // ask to save multipilication table
     char option = reply();
@@ -45,7 +45,7 @@ int main() // main function
 }
 
 // Table function Definition
-void table(int columns, int row, FILE *filePtr)
+void table(int columns, int row)
 {
     printf("\n\n\t\t\t   Multiplication Table: %d x %d\n", columns, row);
     printf("\t\t\t _______________________________\n\n");
